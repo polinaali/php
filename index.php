@@ -1,23 +1,22 @@
 
 <?php
 
-//echo '<pre>';
-//var_dump($_REQUEST);
-
 $message =false;
 
-if (isset($_REQUEST['name'])
+if (isset($_REQUEST['name'])//isset - показывает, определена ли переменная в скобках
     and isset($_REQUEST['phone'])) {
-    $name = $_REQUEST['name'];
+    $name = $_REQUEST['name']; //условие, показываеющее, что надо присвоить имя и тлф переменной
     $phone = $_REQUEST['phone'];
 
     $row = 'здравствуйте,' . $name .
-        '. ваш номер: ' . $phone . PHP_EOL;
+        '. ваш номер: ' . $phone . PHP_EOL;// показывает, что надо писать в браузере;
+    //PHP_EOL -  перенос на новую строку
 
-    file_put_contents('./contacts.txt',
+
+    file_put_contents('./contacts.txt', //пишет строку в указанный фаил
         $row,
-        FILE_APPEND);
-    echo 'спасибо';
+        FILE_APPEND); //данные будут дописаны в конец файла вместо того, чтобы его перезаписать
+    $message = 'спасибо';
 }
 
 
@@ -38,14 +37,17 @@ if (isset($_REQUEST['name'])
 <?php if ( $message) : ?>
     <?= $message ?>
 <?php else: ?>
-    <form action="index.php" method="post">
-        <p>представьтесь</p>
-        <input type="text" name="name">
+    <form action="index.php" method="post"> <!-- form - чтобы в php можно было использовать html
+     action - содержит адрес того, что нужно сделать;
+     method - сообщает серверу о методе запроса
+     ="post" - передача данных скрытым способом -->
+        <p>представьтесь</p> <!--то что видно в браузере-->
+        <input type="text" name="name"><!-- отправляет данные на сервер -->
         <p>укажите ваш номер</p>
         <input type="text" name="phone">
-        <button type="submit">отправить</button>
+        <button type="submit">отправить</button><!-- тип кнопки -->
     </form>
 
-<?php endif; ?>
+<?php endif; ?><!-- завершение цикла-->
 </body>
 </html>
