@@ -1,13 +1,13 @@
 <?php
 
+
+
+//echo '<pre>';
+//var_dump($_REQUEST);
 $message = false; //
 $error = false; // Для ошибок
 
-if (isset($_REQUEST['name']) and isset($_REQUEST['surname'])
-    and isset($_REQUEST['phone'])and isset($_REQUEST['email'])
-    and isset($_REQUEST['password']) and isset($_REQUEST['answer'])
-    and isset($_REQUEST['age'])//and isset($_REQUEST['comm'])//
-    ) {
+if (isset($_REQUEST['submit'])) {
 
     $name = $_REQUEST['name']; // Для сокращения
     $surname = $_REQUEST['surname'];
@@ -15,15 +15,14 @@ if (isset($_REQUEST['name']) and isset($_REQUEST['surname'])
     $email = $_REQUEST['email'];
     $password = $_REQUEST['password'];
     $age = $_REQUEST['age'];
-    $answer = $_REQUEST['answer'];
+    $answer = $_REQUEST['answer'] ?? '';
     $comm = $_REQUEST['comm'];
 
-    if    (empty($name) || empty($surname)
+    if (empty($name) || empty($surname)
         || empty($phone)|| empty($email)
         || empty($password) || empty($age)
-        || empty($answer)
+        //|| empty($answer) || empty($comm)
     ) {
-
         $error = 'Заполните все поля';
     } else {
         $row = 'Здравствуйте, ' . $name . ' ' . $surname .
@@ -118,7 +117,7 @@ if (isset($_REQUEST['name']) and isset($_REQUEST['surname'])
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-lg-10">
-                    <button type="submit" class="btn btn-success">Отправить</button>
+                    <button type="submit" name="submit" class="btn btn-success">Отправить</button>
                 </div>
             </div>
 
